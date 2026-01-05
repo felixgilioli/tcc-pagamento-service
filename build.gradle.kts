@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "4.0.1"
 	id("io.spring.dependency-management") version "1.1.7"
 	kotlin("plugin.jpa") version "2.2.21"
+	id("org.sonarqube") version "7.2.2.6593"
 	jacoco
 }
 
@@ -54,6 +55,13 @@ kotlin {
 tasks.withType<Test> {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "felixgilioli_tcc-pagamento-service")
+		property("sonar.organization", "felixgilioli")
+	}
 }
 
 jacoco {
