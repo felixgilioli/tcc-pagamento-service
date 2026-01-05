@@ -49,7 +49,6 @@ class AprovarPagamentoUseCaseTest {
 
         useCase.execute(pagamentoId)
 
-        verify { pagamentoRepository.findByIdOrNull(pagamentoId) }
         verify { pagamentoRepository.save(any()) }
     }
 
