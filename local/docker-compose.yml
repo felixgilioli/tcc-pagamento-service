@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: pagamento-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pagamento
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-pagamento-data:/var/lib/postgresql/data
+    networks:
+      - pagamento-network
+
+volumes:
+  postgres-pagamento-data:
+
+networks:
+  pagamento-network:
+    driver: bridge
