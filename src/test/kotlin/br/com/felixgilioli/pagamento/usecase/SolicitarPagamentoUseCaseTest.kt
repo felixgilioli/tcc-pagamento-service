@@ -8,12 +8,11 @@ import br.com.felixgilioli.pagamento.repository.PedidoRepository
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
-import java.util.UUID
+import java.util.*
 
 class SolicitarPagamentoUseCaseTest {
 
@@ -47,9 +46,9 @@ class SolicitarPagamentoUseCaseTest {
             pagamentoRepository.save(
                 match {
                     it.pedidoId == pedidoId &&
-                        it.valor == valorTotal &&
-                        it.status == PagamentoStatus.LINK_PAGAMENTO_GERADO &&
-                        it.link == linkPagamento
+                            it.valor == valorTotal &&
+                            it.status == PagamentoStatus.LINK_PAGAMENTO_GERADO &&
+                            it.link == linkPagamento
                 }
             )
         }
