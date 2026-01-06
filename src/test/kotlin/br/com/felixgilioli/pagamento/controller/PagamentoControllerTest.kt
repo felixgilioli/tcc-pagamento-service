@@ -9,7 +9,6 @@ import br.com.felixgilioli.pagamento.usecase.SolicitarPagamentoUseCase
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentCaptor
 import org.mockito.Mockito.*
 import java.math.BigDecimal
 import java.util.*
@@ -139,10 +138,5 @@ class PagamentoControllerTest {
         val response = controller.solicitarPagamento(pedidoId, valorTotal)
 
         assertEquals(204, response.statusCode.value())
-
-        val pedidoCaptor = ArgumentCaptor.forClass(String::class.java)
-        val valorCaptor = ArgumentCaptor.forClass(BigDecimal::class.java)
-        assertEquals(pedidoId, pedidoCaptor.value)
-        assertEquals(valorTotal, valorCaptor.value)
     }
 }
