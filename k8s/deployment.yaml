@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pagamento-service-deployment
+  namespace: tcc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pagamento-service
+  template:
+    metadata:
+      labels:
+        app: pagamento-service
+    spec:
+      containers:
+        - name: pagamento-service
+          image: felixgilioli/pagamento-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MERCADO_PAGO_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: pagamento-service-secret
+                  key: MERCADO_PAGO_ACCESS_TOKEN
+          resources:
+            requests:
+              memory: "400Mi"
+              cpu: "125m"
+            limits:
+              memory: "600Mi"
+              cpu: "400m"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
