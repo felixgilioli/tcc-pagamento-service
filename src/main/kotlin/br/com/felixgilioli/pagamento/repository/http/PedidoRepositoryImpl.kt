@@ -14,7 +14,7 @@ class PedidoRepositoryImpl(
 
     override fun updateStatus(pedidoId: String, status: String) {
         val uri = UriComponentsBuilder
-            .fromUriString("http://localhost:8081/v1/pedido/{pedidoId}/status")
+            .fromUriString("http://pedido-service.tcc.svc.cluster.local/v1/pedido/{pedidoId}/status")
             .queryParam("status", status)
             .buildAndExpand(pedidoId)
             .toUri()
