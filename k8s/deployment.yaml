@@ -17,7 +17,7 @@ spec:
         - name: pagamento-service
           image: felixgilioli/pagamento-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8082
           env:
             - name: MERCADO_PAGO_ACCESS_TOKEN
               valueFrom:
@@ -49,12 +49,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 8082
             initialDelaySeconds: 120
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: 8082
             initialDelaySeconds: 5
             periodSeconds: 5
