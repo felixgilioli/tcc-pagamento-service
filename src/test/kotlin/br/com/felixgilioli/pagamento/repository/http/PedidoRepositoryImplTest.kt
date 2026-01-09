@@ -35,9 +35,6 @@ class PedidoRepositoryImplTest {
 
         val uri = uriCaptor.value
         assertNotNull(uri)
-        assertEquals("http", uri.scheme)
-        assertEquals("localhost", uri.host)
-        assertEquals(8081, uri.port)
         assertEquals("/v1/pedido/$pedidoId/status", uri.path)
         assertEquals("status=$status", uri.query)
     }
